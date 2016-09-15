@@ -10,4 +10,15 @@
     <string name="category" >Category</string >
     <string name="save" >Save</string >
     <string name="delete" >Delete</string >
+    <string-array name="cats" >
+        <item >Text</item >
+        <item >File</item >
+        <item >Image</item >
+        <item >Video</item >
+        <item >Other</item >
+    </string-array >
+    <string name="save_successful" >Hyperlink saved!</string >
+    <string name="save_unsuccessful" >Hyperlink could not be saved!</string >
+    <string name="remove_successful" >Hyperlink removed!</string >
+    <string name="remove_unsuccessful" >Hyperlink could not be removed!</string >
 </resources >

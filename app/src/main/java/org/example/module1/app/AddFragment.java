@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddFragment extends Fragment {
 
@@ -20,6 +20,9 @@ public class AddFragment extends Fragment {
     private EditText url;
     private EditText description;
     private Spinner category;
+
+    public AddFragment() {
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -32,21 +35,17 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Hyperlink h = new Hyperlink();
-                h.URL=url.getText().toString();
-                h.Description=description.getText().toString();
-//                h.Category=category.getSelectedItem().toString();
-                h.Category="Other";
-                mainActivity.onAddHyperlink(h);
+                h.URL = url.getText().toString();
+                h.Description = description.getText().toString();
+                h.Category = category.getSelectedItem().toString();
+                if (mainActivity.onAddHyperlink(h)) {
+                    url.setText("");
+                    description.setText("");
+                    category.setSelection(0);
+                    Toast.makeText(getActivity(), getString(R.string.save_successful), Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(getActivity(), getString(R.string.save_unsuccessful), Toast.LENGTH_LONG).show();
             }
         });
-        //TODO: Create button click and pass new Hyperlink to mainActivity.onAddHyperlink(Hyperlink)
-    }
-
-    public interface Interface {
-        Boolean onAddHyperlink(Hyperlink h);
-    }
-
-    public AddFragment() {
     }
 
     @Override
@@ -73,5 +72,9 @@ public class AddFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mainActivity = null;
+    }
+
+    public interface Interface {
+        Boolean onAddHyperlink(Hyperlink h);
     }
 }

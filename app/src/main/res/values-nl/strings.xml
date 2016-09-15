@@ -3,12 +3,23 @@
     <string name="app_name" >Module 1</string >
     <string name="main" >Hoofd Menu</string >
     <string name="add" >Hyperlinks Toevoegen</string >
-    <string name="modify" >Hyperlinks Bewerken</string >
+    <string name="modify" >Hyperlinks Aanpassen</string >
     <string name="remove" >Hyperlinks Verwijderen</string >
-    <string name="list" >Hyperlinks Overzicht</string >
-    <string name="hyperlink" >hyperlink</string >
+    <string name="list" >Hyperlink Lijst</string >
+    <string name="hyperlink" >Hyperlink</string >
     <string name="description" >Beschrijving</string >
     <string name="category" >Categorie</string >
-    <string name="save" >Opslaan</string >
+    <string name="save" >Opsslan</string >
     <string name="delete" >Verwijderen</string >
+    <string-array name="cats" >
+        <item >Text</item >
+        <item >Bestand</item >
+        <item >Afbeelding</item >
+        <item >Video</item >
+        <item >Overig</item >
+    </string-array >
+    <string name="save_successful" >Hyperlink opgeslagen!</string >
+    <string name="save_unsuccessful" >Hyperlink kon niet worden opgeslagen!</string >
+    <string name="remove_successful" >Hyperlink verwijderd!</string >
+    <string name="remove_unsuccessful" >Hyperlink kon niet worden verwijderd!</string >
 </resources >

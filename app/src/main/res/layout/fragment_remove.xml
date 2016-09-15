@@ -64,7 +64,8 @@
             android:id="@+id/category"
             android:layout_below="@+id/categoryTextView"
             android:layout_centerHorizontal="true"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:entries="@array/cats" />
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -2,6 +2,7 @@ package org.example.module1.app;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         setTitle(getString(R.string.main));
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Hyperlinks(ID INTEGER PRIMARY KEY AUTOINCREMENT, URL TEXT, Description TEXT, Category TEXT, Timestamp TEXT)");
+        db.close();
     }
 
     @Override
@@ -65,18 +67,38 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Boolean onAddHyperlink(Hyperlink h) {
-        db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)",new Object[]{h.URL, h.Description, h.Category, h.Timestamp});
+        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)", new Object[]{h.URL, h.Description, h.Category, h.Timestamp});
+        db.close();
         return true;
     }
 
     public Boolean onModifyHyperlink(Hyperlink h) {
         //TODO
-        return true;
+        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
+        if (c.getCount() == 1) {
+            db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ?, Timestamp = ? WHERE ID = ?", new Object[]{h.URL, h.Description, h.Category, h.Timestamp, h.ID});
+            db.close();
+            return true;
+        } else {
+            db.close();
+            return false;
+        }
     }
 
     public Boolean onRemoveHyperlink(Hyperlink h) {
         //TODO
-        return true;
+        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
+        if (c.getCount() == 1) {
+            db.execSQL("DELETE FROM Hyperlinks WHERE ID = ?", new Object[]{h.ID});
+            db.close();
+            return true;
+        } else {
+            db.close();
+            return false;
+        }
     }
 
     public Hyperlink[] onListHyperlinks() {
