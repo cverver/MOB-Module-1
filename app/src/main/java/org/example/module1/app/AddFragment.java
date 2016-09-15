@@ -18,6 +18,7 @@ public class AddFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         save = (Button) view.findViewById(R.id.save);
+        //TODO: Create button click and pass new Hyperlink to mainActivity.onAddHyperlink(Hyperlink)
     }
 
     public interface Interface {
