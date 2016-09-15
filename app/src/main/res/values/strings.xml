@@ -1,0 +1,13 @@
+<resources >
+    <string name="app_name" >Module 1</string >
+    <string name="main" >Main Menu</string >
+    <string name="add" >Add Hyperlinks</string >
+    <string name="modify" >Modify Hyperlinks</string >
+    <string name="remove" >Remove Hyperlinks</string >
+    <string name="list" >List Hyperlinks</string >
+    <string name="hyperlink" >Hyperlink</string >
+    <string name="description" >Description</string >
+    <string name="category" >Category</string >
+    <string name="save" >Save</string >
+    <string name="delete" >Delete</string >
+</resources >

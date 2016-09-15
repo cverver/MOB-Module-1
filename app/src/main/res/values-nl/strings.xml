@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string name="app_name" >Module 1</string >
+    <string name="main" >Hoofd Menu</string >
+    <string name="add" >Hyperlinks Toevoegen</string >
+    <string name="modify" >Hyperlinks Bewerken</string >
+    <string name="remove" >Hyperlinks Verwijderen</string >
+    <string name="list" >Hyperlinks Overzicht</string >
+    <string name="hyperlink" >hyperlink</string >
+    <string name="description" >Beschrijving</string >
+    <string name="category" >Categorie</string >
+    <string name="save" >Opslaan</string >
+    <string name="delete" >Verwijderen</string >
+</resources >
