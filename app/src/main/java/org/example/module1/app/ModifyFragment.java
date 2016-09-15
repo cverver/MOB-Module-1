@@ -6,10 +6,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 public class ModifyFragment extends Fragment {
 
     private Interface mainActivitiy;
+
+    private Button save;
+
+    private EditText url;
+    private EditText description;
+    private Spinner category;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
