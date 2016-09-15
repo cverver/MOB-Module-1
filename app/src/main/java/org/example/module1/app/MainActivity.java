@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         setTitle(getString(R.string.main));
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Hyperlinks(ID INTEGER PRIMARY KEY AUTOINCREMENT, URL TEXT, Description TEXT, Category TEXT, Timestamp TEXT)");
-        db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)", new Object[]{"http://pornhub.com", "Startpagina", "Porn", "09/09/2016 13:30:00"});
     }
 
     @Override
