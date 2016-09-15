@@ -16,23 +16,37 @@ public class ModifyFragment extends Fragment {
 
     private Button save;
 
+    private Spinner hyperlink;
     private EditText url;
     private EditText description;
     private Spinner category;
+
+    private Hyperlink[] hyperlinks;
+
+    public ModifyFragment() {
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //TODO: stuff
-    }
-
-    public interface Interface {
-        Hyperlink[] onListHyperlinks();
-
-        Boolean onModifyHyperlink(Hyperlink h);
-    }
-
-    public ModifyFragment() {
+//        hyperlinks=mainActivitiy.onListHyperlinks();
+        hyperlinks = new Hyperlink[]{new Hyperlink() {{
+            ID = 1;
+            URL = "http://pornhub.com";
+            Description = "Schoolwerk natuurlijk";
+            Category = "Video";
+        }}, new Hyperlink() {{
+            ID = 2;
+            URL = "http://google.com";
+            Description = "Google";
+            Category = "Other";
+        }}};
+        Integer[] is = new Integer[]{};
+        for (Hyperlink h : hyperlinks) {
+            is[is.length] = h.ID;
+        }
+        //TODO fill spinner with Hyperlinks
     }
 
     @Override
@@ -55,11 +69,17 @@ public class ModifyFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
         mainActivitiy = null;
+    }
+
+
+    public interface Interface {
+        Hyperlink[] onListHyperlinks();
+
+        Boolean onModifyHyperlink(Hyperlink h);
     }
 
 }

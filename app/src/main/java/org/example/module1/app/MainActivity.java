@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
             db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ?, Timestamp = ? WHERE ID = ?", new Object[]{h.URL, h.Description, h.Category, h.Timestamp, h.ID});
+            c.close();
             db.close();
             return true;
         } else {
+            c.close();
             db.close();
             return false;
         }
@@ -93,9 +95,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
             db.execSQL("DELETE FROM Hyperlinks WHERE ID = ?", new Object[]{h.ID});
+            c.close();
             db.close();
             return true;
         } else {
+            c.close();
             db.close();
             return false;
         }
