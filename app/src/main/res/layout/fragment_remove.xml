@@ -25,14 +25,12 @@
             android:layout_below="@+id/hyperlink"
             android:text="URL"
             android:id="@+id/urlTextView" />
-    <EditText
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/url"
             android:layout_below="@+id/urlTextView"
-            android:layout_centerHorizontal="true"
-            android:hint="http://example.org"
-            android:inputType="textUri" />
+            android:layout_centerHorizontal="true" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,13 +40,12 @@
             android:layout_below="@+id/url"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp" />
-    <EditText
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/description"
             android:layout_below="@+id/descriptionTextView"
-            android:layout_centerHorizontal="true"
-            android:hint="Example.org website" />
+            android:layout_centerHorizontal="true" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,14 +55,12 @@
             android:layout_below="@+id/description"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp" />
-    <Spinner
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/category"
             android:layout_below="@+id/categoryTextView"
-            android:layout_centerHorizontal="true"
-            android:spinnerMode="dropdown"
-            android:entries="@array/cats" />
+            android:layout_centerHorizontal="true" />
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

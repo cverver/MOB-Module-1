@@ -67,18 +67,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Boolean onAddHyperlink(Hyperlink h) {
-        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)", new Object[]{h.URL, h.Description, h.Category, h.Timestamp});
         db.close();
         return true;
     }
 
     public Boolean onModifyHyperlink(Hyperlink h) {
-        //TODO
-        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
-            db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ?, Timestamp = ? WHERE ID = ?", new Object[]{h.URL, h.Description, h.Category, h.Timestamp, h.ID});
+            db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ? WHERE ID = ?", new Object[]{h.URL, h.Description, h.Category, h.ID});
             c.close();
             db.close();
             return true;
@@ -90,8 +89,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Boolean onRemoveHyperlink(Hyperlink h) {
-        //TODO
-        db = SQLiteDatabase.openDatabase("Hyperlinks", null, MODE_PRIVATE);
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
             db.execSQL("DELETE FROM Hyperlinks WHERE ID = ?", new Object[]{h.ID});
@@ -108,20 +106,20 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     public Hyperlink[] onListHyperlinks() {
         //TODO MAKE SOFT CODED
         return new Hyperlink[]{new Hyperlink() {{
-            ID = 1;
+            ID = 9;
             URL = "http://google.com";
             Description = "Google";
-            Category = "Other";
+            Category = 4; //Other
         }}, new Hyperlink() {{
-            ID = 2;
+            ID = 10;
             URL = "http://plaza2.rocvantwente.nl";
             Description = "Plaza";
-            Category = "Other";
+            Category = 4; //Other
         }}, new Hyperlink() {{
-            ID = 3;
+            ID = 11;
             URL = "http://stackoverflow.com";
             Description = "SO";
-            Category = "Text";
+            Category = 0; //Text
         }}};
     }
 

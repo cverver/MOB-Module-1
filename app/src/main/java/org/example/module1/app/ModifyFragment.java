@@ -34,30 +34,13 @@ public class ModifyFragment extends Fragment {
         description = (EditText) getView().findViewById(R.id.description);
         category = (Spinner) getView().findViewById(R.id.category);
         save = (Button) getView().findViewById(R.id.save);
-
-//        hyperlinks = mainActivitiy.onListHyperlinks();
-        hyperlinks = new Hyperlink[]{new Hyperlink() {{
-            ID = 1;
-            URL = "http://google.com";
-            Description = "Google";
-            Category = 4;
-        }}, new Hyperlink() {{
-            ID = 2;
-            URL = "http://plaza2.rocvantwente.nl";
-            Description = "Plaza";
-            Category = 4;
-        }}, new Hyperlink() {{
-            ID = 3;
-            URL = "http://stackoverflow.com";
-            Description = "SO";
-            Category = 0;
-        }}};
+        hyperlinks = mainActivitiy.onListHyperlinks();
 
         hyperlinkSpinner.setAdapter(new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, hyperlinks));
         hyperlinkSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                sel = (Hyperlink) ((Spinner) getView().findViewById(R.id.hyperlink)).getSelectedItem();
+                sel = (Hyperlink) hyperlinkSpinner.getSelectedItem();
                 url.setText(sel.URL);
                 description.setText(sel.Description);
                 category.setSelection(sel.Category);
@@ -66,6 +49,18 @@ public class ModifyFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 sel = null;
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sel.URL = url.getText().toString();
+                sel.Description = description.getText().toString();
+                sel.Category = category.getSelectedItemPosition();
+                if (mainActivitiy.onModifyHyperlink(sel)) {
+                    hyperlinkSpinner.setSelection(0);
+                    Toast.makeText(getActivity(), getString(R.string.save_successful), Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(getActivity(), getString(R.string.save_unsuccessful), Toast.LENGTH_LONG).show();
             }
         });
 
