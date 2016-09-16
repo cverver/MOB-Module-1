@@ -1,7 +1,9 @@
 package org.example.module1.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ public class RemoveFragment extends Fragment {
     private Interface mainActivitiy;
 
     private Button delete;
+    private Button DELETE_ALL;
 
     private Spinner hyperlinkSpinner;
     private TextView url;
@@ -28,8 +31,9 @@ public class RemoveFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO: stuff
+        getActivity().setTitle(getString(R.string.remove));
         delete = (Button) getView().findViewById(R.id.delete);
+        DELETE_ALL = (Button) getView().findViewById(R.id.DELETE_ALL);
         hyperlinkSpinner = (Spinner) getView().findViewById(R.id.hyperlink);
         url = (TextView) getView().findViewById(R.id.url);
         description = (TextView) getView().findViewById(R.id.description);
@@ -57,9 +61,41 @@ public class RemoveFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (mainActivitiy.onRemoveHyperlink(sel)) {
+
+                    hyperlinks = mainActivitiy.onListHyperlinks();
+                    hyperlinkSpinner.setAdapter(new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, hyperlinks));
                     hyperlinkSpinner.setSelection(0);
-                    Toast.makeText(getActivity(), getString(R.string.save_successful), Toast.LENGTH_SHORT).show();
-                } else Toast.makeText(getActivity(), getString(R.string.save_unsuccessful), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.remove_successful), Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(getActivity(), getString(R.string.remove_unsuccessful), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        DELETE_ALL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog a = new AlertDialog
+                        .Builder(getActivity())
+                        .setTitle(getString(R.string.DELETE_ALL))
+                        .setMessage(getString(R.string.DELETE_ALL_confirmation))
+                        .setIcon(R.drawable.remove)
+                        .setPositiveButton(getString(R.string.DELETE_ALL_confirm), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (mainActivitiy.onREMOVE_ALLHyperlinks()) {
+                                    Toast.makeText(getActivity(), getString(R.string.REMOVE_ALL_successful), Toast.LENGTH_SHORT).show();
+                                    mainActivitiy.onBackPressed();
+                                } else Toast.makeText(getActivity(), getString(R.string.REMOVE_ALL_unsuccessful), Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.DELETE_ALL_cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getActivity(), getString(R.string.REMOVE_ALL_canceled), Toast.LENGTH_LONG).show();
+
+                            }
+                        })
+                        .create();
+                a.show();
             }
         });
     }
@@ -94,7 +130,11 @@ public class RemoveFragment extends Fragment {
     public interface Interface {
         Hyperlink[] onListHyperlinks();
 
+        void onBackPressed();
+
         Boolean onRemoveHyperlink(Hyperlink h);
+
+        Boolean onREMOVE_ALLHyperlinks();
     }
 
 }

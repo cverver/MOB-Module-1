@@ -28,7 +28,7 @@ public class ModifyFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        getActivity().setTitle(getString(R.string.modify));
         hyperlinkSpinner = (Spinner) getView().findViewById(R.id.hyperlink);
         url = (EditText) getView().findViewById(R.id.url);
         description = (EditText) getView().findViewById(R.id.description);

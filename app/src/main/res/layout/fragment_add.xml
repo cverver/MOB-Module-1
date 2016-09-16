@@ -1,62 +1,66 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="org.example.module1.app.AddFragment" >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="URL"
+                android:id="@+id/urlTextView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.example.module1.app.AddFragment" >
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="URL"
-            android:id="@+id/urlTextView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/url"
-            android:layout_below="@+id/urlTextView"
-            android:layout_centerHorizontal="true"
-            android:hint="http://example.org"
-            android:inputType="textUri" />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/description"
-            android:id="@+id/descriptionTextView"
-            android:layout_below="@+id/url"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp" />
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/description"
-            android:layout_below="@+id/descriptionTextView"
-            android:layout_centerHorizontal="true"
-            android:hint="Example.org website" />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/category"
-            android:id="@+id/categoryTextView"
-            android:layout_below="@+id/description"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp" />
-    <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/category"
-            android:layout_below="@+id/categoryTextView"
-            android:layout_centerHorizontal="true"
-            android:spinnerMode="dropdown"
-            android:entries="@array/cats" />
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:id="@+id/save"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-</RelativeLayout >
+                android:layout_height="wrap_content"
+                android:id="@+id/url"
+                android:layout_below="@+id/urlTextView"
+                android:layout_centerHorizontal="true"
+                android:hint="http://example.org"
+                android:inputType="textUri" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/description"
+                android:id="@+id/descriptionTextView"
+                android:layout_below="@+id/url"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp" />
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:layout_below="@+id/descriptionTextView"
+                android:layout_centerHorizontal="true"
+                android:hint="Example.org website" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/category"
+                android:id="@+id/categoryTextView"
+                android:layout_below="@+id/description"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp" />
+        <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/category"
+                android:layout_below="@+id/categoryTextView"
+                android:layout_centerHorizontal="true"
+                android:spinnerMode="dropdown"
+                android:entries="@array/cats" />
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:id="@+id/save"
+                android:layout_below="@+id/category"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+    </RelativeLayout >
+</ScrollView >

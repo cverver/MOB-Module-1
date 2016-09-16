@@ -11,19 +11,14 @@ public class ListFragment extends Fragment {
 
     private Interface mainActivity;
 
+    public ListFragment() {
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle(getString(R.string.list));
         //TODO: stuff
-    }
-
-    public interface Interface {
-        Hyperlink[] onListHyperlinks();
-
-        void onOpenHyperlink(Hyperlink h);
-    }
-
-    public ListFragment() {
     }
 
     @Override
@@ -50,5 +45,11 @@ public class ListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mainActivity = null;
+    }
+
+    public interface Interface {
+        Hyperlink[] onListHyperlinks();
+
+        void onOpenHyperlink(Hyperlink h);
     }
 }

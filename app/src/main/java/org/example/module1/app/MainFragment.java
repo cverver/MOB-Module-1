@@ -17,9 +17,13 @@ public class MainFragment extends Fragment {
     private Button remove;
     private Button list;
 
+    public MainFragment() {
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle(getString(R.string.main));
         add = (Button) view.findViewById(R.id.add);
         modify = (Button) view.findViewById(R.id.modify);
         remove = (Button) view.findViewById(R.id.remove);
@@ -50,19 +54,6 @@ public class MainFragment extends Fragment {
         });
     }
 
-    public interface Interface {
-        void onAddNavigation();
-
-        void onModifyNavigation();
-
-        void onRemoveNavigation();
-
-        void onListNavigation();
-    }
-
-    public MainFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,5 +78,15 @@ public class MainFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mainActivity = null;
+    }
+
+    public interface Interface {
+        void onAddNavigation();
+
+        void onModifyNavigation();
+
+        void onRemoveNavigation();
+
+        void onListNavigation();
     }
 }

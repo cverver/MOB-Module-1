@@ -27,6 +27,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle(getString(R.string.add));
         save = (Button) view.findViewById(R.id.save);
         url = (EditText) view.findViewById(R.id.url);
         description = (EditText) view.findViewById(R.id.description);

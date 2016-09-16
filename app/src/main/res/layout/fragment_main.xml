@@ -1,34 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="org.example.module1.app.MainFragment" >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+        <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.example.module1.app.MainFragment" >
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:id="@+id/add"
-            android:layout_above="@+id/modify"
-            android:layout_centerHorizontal="true" />
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/modify"
-            android:id="@+id/modify"
-            android:layout_above="@+id/remove"
-            android:layout_centerHorizontal="true" />
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/remove"
-            android:id="@+id/remove"
-            android:layout_above="@+id/list"
-            android:layout_centerHorizontal="true" />
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/list"
-            android:id="@+id/list"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-</RelativeLayout >
+                android:layout_height="wrap_content"
+                android:text="@string/add"
+                android:id="@+id/add"
+                android:layout_centerHorizontal="true" />
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modify"
+                android:id="@+id/modify"
+                android:layout_below="@+id/add"
+                android:layout_centerHorizontal="true" />
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/remove"
+                android:id="@+id/remove"
+                android:layout_below="@+id/modify"
+                android:layout_centerHorizontal="true" />
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list"
+                android:id="@+id/list"
+                android:layout_below="@+id/remove"
+                android:layout_centerHorizontal="true" />
+    </RelativeLayout >
+</ScrollView >

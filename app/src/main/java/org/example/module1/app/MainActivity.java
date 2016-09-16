@@ -17,14 +17,16 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fl, new MainFragment());
-        ft.commit();
-        setTitle(getString(R.string.main));
+        if (savedInstanceState == null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.fl, new MainFragment());
+            ft.commit();
+        }
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Hyperlinks(ID INTEGER PRIMARY KEY AUTOINCREMENT, URL TEXT, Description TEXT, Category INT, Timestamp TEXT)");
         db.close();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fl, new MainFragment());
             ft.commit();
-            setTitle(getString(R.string.main));
         }
     }
 
@@ -42,28 +43,24 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new AddFragment());
         ft.commit();
-        setTitle(getString(R.string.add));
     }
 
     public void onModifyNavigation() {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new ModifyFragment());
         ft.commit();
-        setTitle(getString(R.string.modify));
     }
 
     public void onRemoveNavigation() {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new RemoveFragment());
         ft.commit();
-        setTitle(getString(R.string.remove));
     }
 
     public void onListNavigation() {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new ListFragment());
         ft.commit();
-        setTitle(getString(R.string.list));
     }
 
     public Boolean onAddHyperlink(Hyperlink h) {
@@ -93,6 +90,22 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
             db.execSQL("DELETE FROM Hyperlinks WHERE ID = ?", new Object[]{h.ID});
+            c.close();
+            db.close();
+            return true;
+        } else {
+            c.close();
+            db.close();
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean onREMOVE_ALLHyperlinks() {
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
+        db.execSQL("DELETE FROM Hyperlinks");
+        Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "", new String[]{}, "", "", "");
+        if (c.getCount() == 0) {
             c.close();
             db.close();
             return true;

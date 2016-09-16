@@ -22,4 +22,11 @@
     <string name="save_unsuccessful" >Hyperlink kon niet worden opgeslagen!</string >
     <string name="remove_successful" >Hyperlink verwijderd!</string >
     <string name="remove_unsuccessful" >Hyperlink kon niet worden verwijderd!</string >
+    <string name="REMOVE_ALL_successful" >Hyperlinks zijn verwijderd!</string >
+    <string name="REMOVE_ALL_unsuccessful" >Hyperlinks konden niet worden verwijderd!</string >
+    <string name="DELETE_ALL" >ALLES VERWIJDEREN</string >
+    <string name="DELETE_ALL_confirmation" >Weet u zeker dat u ALLE hyperlinks wil verwijderen?</string >
+    <string name="DELETE_ALL_confirm" >Ja, alles verwijderen</string >
+    <string name="DELETE_ALL_cancel" >Nee, annuleren</string >
+    <string name="REMOVE_ALL_canceled" >Het verwijderen van alle hyperlinks is geannuleerd</string >
 </resources >

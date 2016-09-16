@@ -21,4 +21,11 @@
     <string name="save_unsuccessful" >Hyperlink could not be saved!</string >
     <string name="remove_successful" >Hyperlink removed!</string >
     <string name="remove_unsuccessful" >Hyperlink could not be removed!</string >
+    <string name="REMOVE_ALL_successful" >Hyperlinks are removed!</string >
+    <string name="REMOVE_ALL_unsuccessful" >Hyperlinks could not be removed!</string >
+    <string name="DELETE_ALL" >DELETE ALL</string >
+    <string name="DELETE_ALL_confirmation" >Are you sure you want to delete ALL hyperlinks?</string >
+    <string name="DELETE_ALL_confirm" >Yes, delete all</string >
+    <string name="DELETE_ALL_cancel" >No, cancel</string >
+    <string name="REMOVE_ALL_canceled" >Deleting all hyperlinks was canceled</string >
 </resources >
