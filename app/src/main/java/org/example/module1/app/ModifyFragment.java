@@ -33,9 +33,9 @@ public class ModifyFragment extends Fragment {
 //        hyperlinks=mainActivitiy.onListHyperlinks();
         hyperlinks = new Hyperlink[]{new Hyperlink() {{
             ID = 1;
-            URL = "http://pornhub.com";
-            Description = "Schoolwerk natuurlijk";
-            Category = "Video";
+            URL = "http://plaza2.rocvantwente.nl";
+            Description = "School plaza";
+            Category = "Other";
         }}, new Hyperlink() {{
             ID = 2;
             URL = "http://google.com";
