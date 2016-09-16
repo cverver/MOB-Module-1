@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Interface, AddFragment.Interface, ModifyFragment.Interface, RemoveFragment.Interface, ListFragment.Interface {
 
@@ -46,18 +47,30 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public void onModifyNavigation() {
+        if (onListHyperlinks().length == 0) {
+            Toast.makeText(this, getString(R.string.no_hyperlinks), Toast.LENGTH_LONG).show();
+            return;
+        }
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new ModifyFragment());
         ft.commit();
     }
 
     public void onRemoveNavigation() {
+        if (onListHyperlinks().length == 0) {
+            Toast.makeText(this, getString(R.string.no_hyperlinks), Toast.LENGTH_LONG).show();
+            return;
+        }
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new RemoveFragment());
         ft.commit();
     }
 
     public void onListNavigation() {
+        if (onListHyperlinks().length == 0) {
+            Toast.makeText(this, getString(R.string.no_hyperlinks), Toast.LENGTH_LONG).show();
+            return;
+        }
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl, new ListFragment());
         ft.commit();
@@ -119,10 +132,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     public Hyperlink[] onListHyperlinks() {
         //TODO MAKE SOFT CODED
         return new Hyperlink[]{new Hyperlink() {{
-            ID = 9;
-            URL = "http://google.com";
+            ID = 12;
+            URL = "http://google.con";
             Description = "Google";
-            Category = 4; //Other
+            Category = 0; //Other
         }}, new Hyperlink() {{
             ID = 10;
             URL = "http://plaza2.rocvantwente.nl";

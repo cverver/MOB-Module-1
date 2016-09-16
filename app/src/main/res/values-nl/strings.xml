@@ -29,4 +29,5 @@
     <string name="DELETE_ALL_confirm" >Ja, alles verwijderen</string >
     <string name="DELETE_ALL_cancel" >Nee, annuleren</string >
     <string name="REMOVE_ALL_canceled" >Het verwijderen van alle hyperlinks is geannuleerd</string >
+    <string name="no_hyperlinks" >Er zijn nog geen hyperlinks toegevoegd</string >
 </resources >

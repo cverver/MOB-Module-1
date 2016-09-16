@@ -54,6 +54,9 @@ public class ModifyFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sel = new Hyperlink() {{
+                    ID = sel.ID;
+                }};
                 sel.URL = url.getText().toString();
                 sel.Description = description.getText().toString();
                 sel.Category = category.getSelectedItemPosition();
