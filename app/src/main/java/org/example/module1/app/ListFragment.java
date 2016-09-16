@@ -11,6 +11,8 @@ public class ListFragment extends Fragment {
 
     private Interface mainActivity;
 
+    private Hyperlink[] h;
+
     public ListFragment() {
     }
 

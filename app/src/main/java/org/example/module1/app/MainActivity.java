@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Interface, AddFragment.Interface, ModifyFragment.Interface, RemoveFragment.Interface, ListFragment.Interface {
 
@@ -131,23 +130,20 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Hyperlink[] onListHyperlinks() {
-        //TODO MAKE SOFT CODED
-        return new Hyperlink[]{new Hyperlink() {{
-            ID = 12;
-            URL = "http://google.con";
-            Description = "Google";
-            Category = 0; //Other
-        }}, new Hyperlink() {{
-            ID = 10;
-            URL = "http://plaza2.rocvantwente.nl";
-            Description = "Plaza";
-            Category = 4; //Other
-        }}, new Hyperlink() {{
-            ID = 11;
-            URL = "http://stackoverflow.com";
-            Description = "SO";
-            Category = 0; //Text
-        }}};
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
+        final Cursor c = db.query("Hyperlinks", new String[]{"ID", "URL", "Description", "Category", "Timestamp"}, "", new String[]{}, "", "", "ID DESC");
+        Hyperlink[] h = new Hyperlink[c.getCount()];
+        for (int i = 0; c.moveToNext(); i++) {
+            h[i] = new Hyperlink() {{
+                ID = c.getInt(c.getColumnIndex("ID"));
+                URL = c.getString(c.getColumnIndex("URL"));
+                Description = c.getString(c.getColumnIndex("Description"));
+                Category = c.getInt(c.getColumnIndex("Category"));
+                Timestamp = c.getString(c.getColumnIndex("Timestamp"));
+            }};
+        }
+        db.close();
+        return h;
     }
 
     public void onOpenHyperlink(Hyperlink h) {
