@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/description"
+                android:id="@+id/textViewDescription"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/hyperlinkDescription"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+    </RelativeLayout >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="URL"
+                android:id="@+id/textView3"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/hyperlinkURL"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_alignParentEnd="true" />
+    </RelativeLayout >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/category"
+                android:id="@+id/textViewCategory"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/hyperlinkCategory"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+    </RelativeLayout >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hyperlinkID"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/hyperlinkTimestamp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+    </RelativeLayout >
+</LinearLayout >

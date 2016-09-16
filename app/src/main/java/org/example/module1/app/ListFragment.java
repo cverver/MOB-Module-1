@@ -22,14 +22,14 @@ public class ListFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle(getString(R.string.list));
-        //TODO: stuff
+        h = mainActivity.onListHyperlinks();
 
         list = (ListView) getView().findViewById(R.id.hyperlinkListView);
-
+        list.setAdapter(new HyperlinkArrayAdapter(getActivity(), R.layout.hyperlink, h));
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mainActivity.onOpenHyperlink(((Hyperlink) list.getItemAtPosition(position)));
+                mainActivity.onOpenHyperlink((Hyperlink) list.getItemAtPosition(position));
             }
         });
     }

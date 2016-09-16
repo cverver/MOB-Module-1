@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Interface, AddFragment.Interface, ModifyFragment.Interface, RemoveFragment.Interface, ListFragment.Interface {
@@ -80,17 +81,19 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Boolean onAddHyperlink(Hyperlink h) {
+        if (!Patterns.WEB_URL.matcher(h.URL).matches() || h.Description.length() == 0) return false;
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
-        db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)", new Object[]{h.URL, h.Description, h.Category, h.Timestamp});
+        db.execSQL("INSERT INTO Hyperlinks(URL,Description,Category,Timestamp) VALUES(?,?,?,?)", new Object[]{h.URL.startsWith("http://") || h.URL.startsWith("https://") ? h.URL : "http://" + h.URL, h.Description, h.Category, h.Timestamp});
         db.close();
         return true;
     }
 
     public Boolean onModifyHyperlink(Hyperlink h) {
+        if (!Patterns.WEB_URL.matcher(h.URL).matches() || h.Description.length() == 0) return false;
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
         Cursor c = db.query("Hyperlinks", new String[]{"ID"}, "ID = ?", new String[]{h.ID.toString()}, "", "", "");
         if (c.getCount() == 1) {
-            db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ? WHERE ID = ?", new Object[]{h.URL, h.Description, h.Category, h.ID});
+            db.execSQL("UPDATE Hyperlinks SET URL = ?, Description = ?, Category = ?, Timestamp = ? WHERE ID = ?", new Object[]{h.URL.startsWith("http://") || h.URL.startsWith("https://") ? h.URL : "http://" + h.URL, h.Description, h.Category, h.Timestamp, h.ID});
             c.close();
             db.close();
             return true;
@@ -145,15 +148,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
                 Timestamp = c.getString(c.getColumnIndex("Timestamp"));
             }};
         }
+        c.close();
         db.close();
         return h;
     }
 
     public void onOpenHyperlink(Hyperlink h) {
-        //TODO
-        String url = h.URL;
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
+        i.setData(Uri.parse(h.URL));
         startActivity(i);
     }
 }
