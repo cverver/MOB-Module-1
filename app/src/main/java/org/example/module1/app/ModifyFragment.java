@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.*;
 
 public class ModifyFragment extends Fragment {
 
@@ -16,12 +14,13 @@ public class ModifyFragment extends Fragment {
 
     private Button save;
 
-    private Spinner hyperlink;
+    private Spinner hyperlinkSpinner;
     private EditText url;
     private EditText description;
     private Spinner category;
 
     private Hyperlink[] hyperlinks;
+    private Hyperlink sel;
 
     public ModifyFragment() {
     }
@@ -29,24 +28,47 @@ public class ModifyFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO: stuff
-//        hyperlinks=mainActivitiy.onListHyperlinks();
+
+        hyperlinkSpinner = (Spinner) getView().findViewById(R.id.hyperlink);
+        url = (EditText) getView().findViewById(R.id.url);
+        description = (EditText) getView().findViewById(R.id.description);
+        category = (Spinner) getView().findViewById(R.id.category);
+        save = (Button) getView().findViewById(R.id.save);
+
+//        hyperlinks = mainActivitiy.onListHyperlinks();
         hyperlinks = new Hyperlink[]{new Hyperlink() {{
             ID = 1;
-            URL = "http://plaza2.rocvantwente.nl";
-            Description = "School plaza";
-            Category = "Other";
-        }}, new Hyperlink() {{
-            ID = 2;
             URL = "http://google.com";
             Description = "Google";
-            Category = "Other";
+            Category = 4;
+        }}, new Hyperlink() {{
+            ID = 2;
+            URL = "http://plaza2.rocvantwente.nl";
+            Description = "Plaza";
+            Category = 4;
+        }}, new Hyperlink() {{
+            ID = 3;
+            URL = "http://stackoverflow.com";
+            Description = "SO";
+            Category = 0;
         }}};
-        Integer[] is = new Integer[]{};
-        for (Hyperlink h : hyperlinks) {
-            is[is.length] = h.ID;
-        }
-        //TODO fill spinner with Hyperlinks
+
+        hyperlinkSpinner.setAdapter(new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, hyperlinks));
+        hyperlinkSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                sel = (Hyperlink) ((Spinner) getView().findViewById(R.id.hyperlink)).getSelectedItem();
+                url.setText(sel.URL);
+                description.setText(sel.Description);
+                category.setSelection(sel.Category);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                sel = null;
+            }
+        });
+
     }
 
     @Override

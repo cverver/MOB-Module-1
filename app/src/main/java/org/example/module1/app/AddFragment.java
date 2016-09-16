@@ -37,7 +37,7 @@ public class AddFragment extends Fragment {
                 Hyperlink h = new Hyperlink();
                 h.URL = url.getText().toString();
                 h.Description = description.getText().toString();
-                h.Category = category.getSelectedItem().toString();
+                h.Category = category.getSelectedItemPosition();
                 if (mainActivity.onAddHyperlink(h)) {
                     url.setText("");
                     description.setText("");

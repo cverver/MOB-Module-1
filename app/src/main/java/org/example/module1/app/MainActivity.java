@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         ft.commit();
         setTitle(getString(R.string.main));
         db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS Hyperlinks(ID INTEGER PRIMARY KEY AUTOINCREMENT, URL TEXT, Description TEXT, Category TEXT, Timestamp TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Hyperlinks(ID INTEGER PRIMARY KEY AUTOINCREMENT, URL TEXT, Description TEXT, Category INT, Timestamp TEXT)");
         db.close();
     }
 
@@ -106,8 +106,23 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
     }
 
     public Hyperlink[] onListHyperlinks() {
-        //TODO
-        return new Hyperlink[]{};
+        //TODO MAKE SOFT CODED
+        return new Hyperlink[]{new Hyperlink() {{
+            ID = 1;
+            URL = "http://google.com";
+            Description = "Google";
+            Category = "Other";
+        }}, new Hyperlink() {{
+            ID = 2;
+            URL = "http://plaza2.rocvantwente.nl";
+            Description = "Plaza";
+            Category = "Other";
+        }}, new Hyperlink() {{
+            ID = 3;
+            URL = "http://stackoverflow.com";
+            Description = "SO";
+            Category = "Text";
+        }}};
     }
 
     public void onOpenHyperlink(Hyperlink h) {
