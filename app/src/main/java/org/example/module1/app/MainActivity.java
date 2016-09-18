@@ -135,20 +135,20 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Inte
         }
     }
 
-    public Hyperlink[] onListHyperlinks() {
-        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null);
-        final Cursor c = db.query("Hyperlinks", new String[]{"ID", "URL", "Description", "Category", "Timestamp"}, "", new String[]{}, "", "", "ID DESC");
-        Hyperlink[] h = new Hyperlink[c.getCount()];
-        for (int i = 0; c.moveToNext(); i++) {
+    public Hyperlink[] onListHyperlinks() { // Robin
+        db = openOrCreateDatabase("Hyperlinks", MODE_PRIVATE, null); // Open de database eerst.
+        final Cursor c = db.query("Hyperlinks", new String[]{"ID", "URL", "Description", "Category", "Timestamp"}, "", new String[]{}, "", "", "ID DESC"); //Stuur een query naar de Db
+        Hyperlink[] h = new Hyperlink[c.getCount()]; //Haal de aantal hyperlinks op
+        for (int i = 0; c.moveToNext(); i++) { //schuif de cursor naar de volgende rij
             h[i] = new Hyperlink() {{
-                ID = c.getInt(c.getColumnIndex("ID"));
-                URL = c.getString(c.getColumnIndex("URL"));
+                ID = c.getInt(c.getColumnIndex("ID")); //Het id ophalen
+                URL = c.getString(c.getColumnIndex("URL")); // De url ophalen
                 Description = c.getString(c.getColumnIndex("Description"));
                 Category = c.getInt(c.getColumnIndex("Category"));
-                Timestamp = c.getString(c.getColumnIndex("Timestamp"));
+                Timestamp = c.getString(c.getColumnIndex("Timestamp")); //time.format("%d/%m/%Y %T")
             }};
         }
-        c.close();
+        c.close(); //Sluit de database zodat het niet open blijft.
         db.close();
         return h;
     }

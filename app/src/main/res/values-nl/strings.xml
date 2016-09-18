@@ -9,7 +9,7 @@
     <string name="hyperlink" >Hyperlink</string >
     <string name="description" >Beschrijving</string >
     <string name="category" >Categorie</string >
-    <string name="save" >Opsslan</string >
+    <string name="save">Opslaan</string>
     <string name="delete" >Verwijderen</string >
     <string-array name="cats" >
         <item >Text</item >
